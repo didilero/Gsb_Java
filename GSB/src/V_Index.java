@@ -21,7 +21,6 @@ public class V_Index extends JFrame{
 		this.monPanel = new V_Connexion();
 		
 		
-		
 		this.getContentPane().add(monPanel);
 		this.monPanel.setOpaque(false);
 		this.setVisible(true);

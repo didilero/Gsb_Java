@@ -15,6 +15,8 @@ public class V_Connexion extends JPanel{
 	private JButton btnQuitter;
 	
 	public V_Connexion(){
+		
+		//message 
 		this.lblMessage = new JLabel ();		
 		this.lblMessage.setText("Entrer le login: ");
 		
