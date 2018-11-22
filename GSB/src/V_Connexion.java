@@ -1,9 +1,12 @@
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 
-public class V_Connexion extends JPanel{
+public class V_Connexion extends JPanel implements ActionListener{
 	
 	/**
 	 * 
@@ -14,10 +17,7 @@ public class V_Connexion extends JPanel{
 	private JTextField jtfMdp;
 	private JLabel lblMessage;
 	private JLabel lblMessage1;
-	
-
 	private JButton btnValider;
-	private JButton btnQuitter;
 	
 	public V_Connexion(){
 		this.lblMessage = new JLabel ();		
@@ -37,19 +37,19 @@ public class V_Connexion extends JPanel{
 		this.jtfMdp.setPreferredSize(new Dimension(100, 30));
 		
 		this.btnValider = new JButton("Valider");
-		this.btnQuitter = new JButton("Quitter");
+		this.btnValider.addActionListener(new ActionConnecter(this.jtflog,this.jtfMdp,this));
 		
 		this.add(lblMessage);	
 		this.add(jtflog);	
 		this.add(lblMessage1);
 		this.add(jtfMdp);
 		this.add(btnValider);
-		this.add(btnQuitter);
-		
-		//this.btnValider.addActionListener(new ActionConnexion());
-		//this.btnQuitter.addActionListener(new ActionQuitter());
-		
-		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
+	
 }

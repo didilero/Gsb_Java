@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class ModeleTest {
 	private boolean rep,rep2;
-	int rep3;
+	boolean rep3;
 	@Before
 	public void setUp() throws Exception {
 		rep = Modele.connexion();
@@ -30,7 +30,7 @@ public class ModeleTest {
 	// comptable et que les données saisie soit les bonnes
 	@Test
 	public void testConnexionUtilisateur(){
-		assertEquals("La Connexion de l'utilisateur a la base de donnee a echoué",1,rep3);
+		assertEquals("La Connexion de l'utilisateur a la base de donnee a echoué",true,rep3);
 	}
 
 }

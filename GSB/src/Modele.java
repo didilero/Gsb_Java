@@ -84,10 +84,10 @@ public class Modele {
 	 * @param unLog de type String qui sont le nom de l'utilisateur
 	 * @param unMdp de type String qui est le mot de passe 
 	 * @author Adrien 
-	 * @return 1 ou 0
+	 * @return true/false
 	 */
-	public static int connexionUtilisateur(String unLog, String unMdp){
-		int rep=0;
+	public static boolean connexionUtilisateur(String unLog, String unMdp){
+		boolean rep=false;
 		Modele.connexion();
 		try {
 			String mdp = getEncodedPassword(unMdp);
@@ -96,7 +96,9 @@ public class Modele {
 			st.setString(2,unLog);
 			rs = st.executeQuery();
 			rs.next();
-			rep = rs.getInt(1);
+			if(rs.getInt(1) !=0){
+				rep = true;
+			}
 			rs.close();
 			st.close();
 			Modele.deconnexion();
@@ -107,5 +109,6 @@ public class Modele {
 		}
 		return rep;
 	}
+	
 	
 }

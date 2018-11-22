@@ -1,16 +1,11 @@
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
-
-
-
-
 import javax.swing.*;
 
 
 public class V_Index extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel monPanel;
 	
 	public V_Index(){
@@ -20,13 +15,9 @@ public class V_Index extends JFrame{
 		this.getContentPane().removeAll();
 		this.monPanel = new V_Connexion();
 		
-		
-		
 		this.getContentPane().add(monPanel);
 		this.monPanel.setOpaque(false);
 		this.setVisible(true);
 		
 	}
-
-	
 }
