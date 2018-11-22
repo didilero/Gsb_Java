@@ -1,16 +1,20 @@
 import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
+
+import Modele.Modele;
 
 
 public class ModeleTest {
 	private boolean rep,rep2;
 	boolean rep3;
+	
 	@Before
 	public void setUp() throws Exception {
 		rep = Modele.connexion();
 		rep2 = Modele.deconnexion();
-		rep3 = Modele.connexionUtilisateur("tgouraud", "coucou"); // marche pas si on met le mot de passe pas chiffré
+		rep3 = Modele.connexionUtilisateur("tgouraud", "coucou"); 
 	}
 	
 	// Le but de ce test est de verifier que le modele arrive a ce connecter a la base de donnee
@@ -32,5 +36,8 @@ public class ModeleTest {
 	public void testConnexionUtilisateur(){
 		assertEquals("La Connexion de l'utilisateur a la base de donnee a echoué",true,rep3);
 	}
-
+	@Test
+	public void testCryptage(){
+		assertEquals("Le mot de passe n'est pas correctement crypté","721a9b52bfceacc503c056e3b9b93cfa",Modele.getEncodedPassword("coucou"));
+	}
 }

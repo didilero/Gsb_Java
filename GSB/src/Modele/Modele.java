@@ -1,3 +1,4 @@
+package Modele;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
@@ -21,7 +22,7 @@ public class Modele {
 		boolean rep = false;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connexion = DriverManager.getConnection("jdbc:mysql://localhost/gsb_frais","root","");
+			connexion = DriverManager.getConnection("jdbc:mysql://172.16.203.100/2018gouraud","tgouraud","123456");
 			rep = true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -80,7 +81,7 @@ public class Modele {
 	}
 	
 	/***
-	 * fonction connexionUtilisateur() qui permet de verifier que les parametres 
+	 * fonction connexionUtilisateur() qui permet de verifier que les parametres entrer sont ceux du comptable pour se connecter a l'application.
 	 * @param unLog de type String qui sont le nom de l'utilisateur
 	 * @param unMdp de type String qui est le mot de passe 
 	 * @author Adrien 
@@ -90,13 +91,12 @@ public class Modele {
 		boolean rep=false;
 		Modele.connexion();
 		try {
-			String mdp = getEncodedPassword(unMdp);
-			st = connexion.prepareStatement("SELECT COUNT(login) FROM Visiteur WHERE mdp=? AND login=? AND role=1");
-			st.setString(1,mdp);
+			String mdpC = Modele.getEncodedPassword(unMdp);
+			st = connexion.prepareStatement("SELECT COUNT(*) FROM Visiteur WHERE mdp=? AND login=? AND role=1;");
+			st.setString(1,mdpC);
 			st.setString(2,unLog);
 			rs = st.executeQuery();
-			rs.next();
-			if(rs.getInt(1) !=0){
+			if(rs.next()){
 				rep = true;
 			}
 			rs.close();
