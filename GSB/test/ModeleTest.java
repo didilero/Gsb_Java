@@ -1,9 +1,8 @@
 import static org.junit.Assert.*;
+import modele.Modele;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import Modele.Modele;
 
 
 public class ModeleTest {
@@ -39,5 +38,15 @@ public class ModeleTest {
 	@Test
 	public void testCryptage(){
 		assertEquals("Le mot de passe n'est pas correctement crypté","721a9b52bfceacc503c056e3b9b93cfa",Modele.getEncodedPassword("coucou"));
+	}
+	
+	@Test
+	public void testFicheFrais(){
+		assertNotNull("La liste est vide",Modele.getFicheFrais());
+	}
+	
+	@Test
+	public void testFicheFraisHorsForfait(){
+		assertNotNull("La liste est vide",Modele.getHorsForfait());
 	}
 }

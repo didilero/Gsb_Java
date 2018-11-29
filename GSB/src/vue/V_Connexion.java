@@ -1,9 +1,11 @@
-package Vue;
+package vue;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import C_ActionListener.*;
+
 import javax.swing.*;
+
+import c_ActionListener.*;
 
 
 
@@ -20,9 +22,14 @@ public class V_Connexion extends JPanel implements ActionListener{
 	private JLabel lblMessage1;
 	private JButton btnValider;
 	private JLabel image;
+	private JPanel labelSaisie;
+	private JPanel panelImage;
 	
 	public V_Connexion(V_Index v_Index){
-		//v_Index.setLayout(new GridLayout(7,1));
+		v_Index.setLayout(new BorderLayout());
+		// panel de saisie
+		this.labelSaisie = new JPanel();
+		this.labelSaisie.setLayout(new GridLayout(5,1));
 		this.lblMessage = new JLabel ();		
 		this.lblMessage.setText("Entrer le login: ");
 		
@@ -39,19 +46,26 @@ public class V_Connexion extends JPanel implements ActionListener{
 		this.jtfMdp.setFont(police1);
 		this.jtfMdp.setPreferredSize(new Dimension(100, 30));
 		
+		// Bouton
 		this.btnValider = new JButton("Valider");
 		this.btnValider.addActionListener(new ActionConnecter(this.jtflog,this.jtfMdp,v_Index));
 		
+		// Ajout des elements dans un jpanel
+		this.labelSaisie.add(this.lblMessage);
+		this.labelSaisie.add(this.jtflog);
+		this.labelSaisie.add(this.lblMessage1);
+		this.labelSaisie.add(this.jtfMdp);
+		this.labelSaisie.add(this.btnValider);
+		
+		this.panelImage = new JPanel();
 		ImageIcon icone=new ImageIcon(Object.class.getResource("/Image/logo.jpg"));
 		this.image=new JLabel(icone);
+		this.panelImage.add(this.image);
 		
-		this.add(this.image);
-		this.add(lblMessage);	
-		this.add(jtflog);	
-		this.add(lblMessage1);
-		this.add(jtfMdp);
-		this.add(btnValider);
 		this.setBackground(new Color(243,169,47));
+		this.add(this.panelImage);
+		this.add(this.labelSaisie,FlowLayout.CENTER);
+		
 	}
 
 	@Override

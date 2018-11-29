@@ -1,7 +1,10 @@
-package Modele;
+package modele;
+import class_bdd.*;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class Modele {
 	/***
@@ -109,6 +112,70 @@ public class Modele {
 		}
 		return rep;
 	}
+	/**
+	 * Fonction qui retourne une liste deslignefraisforfait enregistrer dans la bdd.
+	 * @return lesfraisF de type ArrayList<LigneFraisForfait>
+	 */
+	public static ArrayList<FicheFrais> getFicheFrais(){
+		ArrayList<FicheFrais> lesFfrais = new ArrayList<FicheFrais>();
+		Modele.connexion();
+		try {
+			st = connexion.prepareStatement("SELECT *  FROM fichefrais WHERE idEtat='CL';");
+			rs = st.executeQuery();
+			while(rs.next()){
+				lesFfrais.add(new FicheFrais(rs.getString(1),rs.getString(2),rs.getInt(3),rs.getInt(4),rs.getDate(5),rs.getString(6)));
+			}
+			rs.close();
+			st.close();
+			Modele.deconnexion();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lesFfrais;
+	}
+	/**
+	 * Fonction qui retourne le nombre de fichefrais selectioner
+	 * @return
+	 */
+	public static int getNbFicheFrais(){
+		int nb = 0;
+		Modele.connexion();
+		try {
+			st = connexion.prepareStatement("SELECT count(*) FROM fichefrais WHERE idEtat='CL';");
+			rs = st.executeQuery();
+			rs.next();
+			nb=rs.getInt(1);
+			rs.close();
+			st.close();
+			Modele.deconnexion();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return nb;
+	}
 	
-	
+	public static ArrayList<LigneFraisHorsForfait> getHorsForfait(){
+		ArrayList<FicheFrais> lesF = Modele.getFicheFrais();
+		ArrayList<LigneFraisHorsForfait> lesFH = new ArrayList<LigneFraisHorsForfait>();
+		Modele.connexion();
+		try {
+			for(int i =0; i<lesF.size();i++){
+				st = connexion.prepareStatement("SELECT * FROM lignefraishorsforfait WHERE lignefraishorsforfait.date=?;");
+				st.setDate(1,lesF.get(i).getDateModif());
+				rs = st.executeQuery();
+				while(rs.next()){
+					lesFH.add(new LigneFraisHorsForfait(rs.getInt(1),rs.getString(2),rs.getString(1),rs.getString(1),rs.getDate(1),rs.getFloat(1)));
+				}
+				rs.close();
+				st.close();
+			}
+			Modele.deconnexion();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lesFH;
+	}
 }
