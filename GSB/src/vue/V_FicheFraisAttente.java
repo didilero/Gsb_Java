@@ -1,6 +1,7 @@
 package vue;
 
 import modele.*;
+import c_ActionListener.ActionConsulterValider;
 import class_bdd.FicheFrais;
 
 import java.awt.Color;
@@ -16,10 +17,13 @@ public class V_FicheFraisAttente extends JPanel {
 	private JScrollPane scrollPane;
 	private Object[][] data = new Object[Modele.getNbFicheFrais()][6];
 	private String[] title = { "idVisiteur", "mois" ,"nbJustificatifs","montantValide","dateModif","idEtat" };
+	private JButton btn;
 	
 	// A faire ajouter un deuxieme tableau avec les fiche frais hors forfait a rajouter
 	public V_FicheFraisAttente(JFrame vue){
 		ArrayList<FicheFrais> lesf = Modele.getFicheFrais();
+		this.btn = new JButton("Voir fiche");
+		this.btn.addActionListener(new ActionConsulterValider());
 		for(int i =0; i<lesf.size();i++){
 			this.data[i][0]=lesf.get(i).getIdVisiteur();
 			this.data[i][1]=lesf.get(i).getMois();
@@ -34,6 +38,9 @@ public class V_FicheFraisAttente extends JPanel {
 		this.scrollPane = new JScrollPane(this.tableau);
 		
 		this.setBackground(new Color(243,169,47));
+		this.add(new JLabel("Fiche de Frais :"));
 		this.add(this.scrollPane);
+		this.add(new JLabel("Selectionner une fiche pour la validé"));
+		this.add(this.btn);
 	}
 }
