@@ -29,6 +29,7 @@ public class V_Menu extends JMenuBar implements ActionListener{
 		this.btnVoirFiche = new JMenuItem("Fiches de frais à validées");
 		this.btnVoirFiche.addActionListener(new ActionConsulterFicheFrais(vue));
 		this.btnValideFiche = new JMenuItem("Fiches de frais validées");
+		this.btnValideFiche.addActionListener(new ActionConsulterFicheFraisValide(vue));
 		this.menuFicheFrais.add(this.btnVoirFiche);
 		this.menuFicheFrais.add(this.btnValideFiche);
 		

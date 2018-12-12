@@ -1,13 +1,12 @@
+
 package vue;
 
 import modele.*;
-import c_ActionListener.ActionConsulterValider;
+import c_ActionListener.ActionVoirValider;
 import class_bdd.FicheFrais;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.ArrayList;
@@ -15,18 +14,19 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 
-public class V_FicheFraisAttente extends JPanel implements ActionListener,FocusListener{
+public class V_FicheFraisDejaValide extends JPanel implements FocusListener{
 	private static final long serialVersionUID = 1L;
 	private JTable tableau;
 	private JScrollPane scrollPane;
-	private Object[][] data = new Object[Modele.getNbFicheFrais()][6];
+	private Object[][] data = new Object[Modele.getNbFicheFraisValide()][6];
 	private String[] title = { "idVisiteur", "mois" ,"nbJustificatifs","montantValide","dateModif","idEtat" };
-	private JButton btn;
 	private int index;
+	private JButton btnVoir;
 	
 	// A faire ajouter un deuxieme tableau avec les fiche frais hors forfait a rajouter
-	public V_FicheFraisAttente(JFrame vue){
-		ArrayList<FicheFrais> lesf = Modele.getFicheFrais();
+	public V_FicheFraisDejaValide(JFrame vue){
+		ArrayList<FicheFrais> lesf = Modele.getFicheFraisValide();
+
 		for(int i =0; i<lesf.size();i++){
 			this.data[i][0]=lesf.get(i).getIdVisiteur();
 			this.data[i][1]=lesf.get(i).getMois();
@@ -36,22 +36,16 @@ public class V_FicheFraisAttente extends JPanel implements ActionListener,FocusL
 			this.data[i][5]=lesf.get(i).getIdEtat();
 		}
 		this.tableau = new JTable(this.data, this.title);
-		this.tableau.addFocusListener(this);
 		this.tableau.setRowHeight(30); // espacement des cellules
+		this.tableau.addFocusListener(this);
 		this.tableau.setPreferredScrollableViewportSize(new Dimension(500, 300));
 		this.scrollPane = new JScrollPane(this.tableau);
-		this.btn = new JButton("Voir fiche");
-		this.btn.addActionListener(new ActionConsulterValider(vue,index));
-		
 		this.setBackground(new Color(243,169,47));
+		this.add( new JLabel("<html>"+"<h2 style=\"font-family:Comic Sans MS\">"+" Liste des visiteurs dont les fiches sont validées:"+"</h2></html>",JLabel.CENTER));
 		this.add(this.scrollPane);
-		this.add(new JLabel("Selectionner une fiche pour la validé"));
-		this.add(this.btn);
-	}
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
+		this.btnVoir = new JButton("Voir fiche");
+		this.btnVoir.addActionListener(new ActionVoirValider(vue,this.index));
+		this.add(this.btnVoir);
 	}
 	@Override
 	public void focusGained(FocusEvent arg0) {
@@ -61,5 +55,6 @@ public class V_FicheFraisAttente extends JPanel implements ActionListener,FocusL
 	@Override
 	public void focusLost(FocusEvent arg0) {
 		// TODO Auto-generated method stub
+		
 	}
-}
+} 

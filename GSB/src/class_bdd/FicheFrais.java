@@ -4,16 +4,16 @@ import java.sql.Date;
 
 public class FicheFrais {
 	private String idVisiteur;
-	private String mois;
+	private int mois;
 	private int nbJustificatifs;
 	private int montantValide;
 	private Date dateModif;
 	private String idEtat;
 	
-	public FicheFrais(String idVisiteur, String string, int nbJustificatifs,
+	public FicheFrais(String idVisiteur, int mois, int nbJustificatifs,
 			int montantValide, Date dateModif, String idEtat) {
 		this.idVisiteur = idVisiteur;
-		this.mois = string;
+		this.mois = mois;
 		this.nbJustificatifs = nbJustificatifs;
 		this.montantValide = montantValide;
 		this.dateModif = dateModif;
@@ -23,7 +23,7 @@ public class FicheFrais {
 	public String getIdVisiteur() {
 		return idVisiteur;
 	}
-	public String getMois() {
+	public int getMois() {
 		return mois;
 	}
 	public int getNbJustificatifs() {
