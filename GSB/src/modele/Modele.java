@@ -94,11 +94,12 @@ public class Modele {
 		Modele.connexion();
 		try {
 			String mdpC = Modele.getEncodedPassword(unMdp);
-			st = connexion.prepareStatement("SELECT COUNT(*) FROM Visiteur WHERE mdp=? AND login=? AND role=1;");
+			st = connexion.prepareStatement("SELECT COUNT(login) FROM Visiteur WHERE mdp=? AND login=? AND role=1;");
 			st.setString(1,mdpC);
 			st.setString(2,unLog);
 			rs = st.executeQuery();
-			if(rs.next() && rs.getInt(1) != 0){
+			rs.next();
+			if(rs.getInt(1) == 1){
 				rep = true;
 			}
 			rs.close();

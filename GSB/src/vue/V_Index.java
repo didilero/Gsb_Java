@@ -10,7 +10,7 @@ public class V_Index extends JFrame{
 	private JPanel monPanel;
 	
 	public V_Index(){
-		this.setTitle("Connexion");
+		this.setTitle("GSB");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(700, 500);
 		this.getContentPane().removeAll();

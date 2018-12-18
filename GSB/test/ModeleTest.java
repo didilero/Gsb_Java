@@ -50,13 +50,4 @@ public class ModeleTest {
 		assertNotNull("La liste est vide",Modele.getHorsForfait());
 	}
 	
-	@Test
-	public void testGetLesInfos(){
-		assertNotNull("La collection est vide",Modele.getLesInfos(1));
-	}
-	
-	@Test
-	public void testEstValiderEtat(){
-		assertEquals("","VA",Modele.getNbFicheFraisValide());
-	}
 }

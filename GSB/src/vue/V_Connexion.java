@@ -1,15 +1,11 @@
 package vue;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
 import c_ActionListener.*;
 
-
-
-public class V_Connexion extends JPanel implements ActionListener{
+public class V_Connexion extends JPanel {
 	
 	/**
 	 * 
@@ -65,13 +61,6 @@ public class V_Connexion extends JPanel implements ActionListener{
 		this.setBackground(new Color(243,169,47));
 		this.add(this.panelImage);
 		this.add(this.labelSaisie,FlowLayout.CENTER);
-		
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }
