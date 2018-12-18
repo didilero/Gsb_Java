@@ -25,6 +25,7 @@ public class V_FicheFraisAttente extends JPanel implements ActionListener,FocusL
 	private int index;
 	
 	// A faire ajouter un deuxieme tableau avec les fiche frais hors forfait a rajouter
+	@SuppressWarnings("static-access")
 	public V_FicheFraisAttente(JFrame vue){
 		ArrayList<FicheFrais> lesf = Modele.getFicheFrais();
 		for(int i =0; i<lesf.size();i++){
@@ -42,7 +43,6 @@ public class V_FicheFraisAttente extends JPanel implements ActionListener,FocusL
 		this.scrollPane = new JScrollPane(this.tableau);
 		this.btn = new JButton("Voir fiche");
 		this.btn.addActionListener(new ActionConsulterValider(vue,index));
-		
 		this.setBackground(new Color(243,169,47));
 		this.add(this.scrollPane);
 		this.add(new JLabel("Selectionner une fiche pour la validé"));

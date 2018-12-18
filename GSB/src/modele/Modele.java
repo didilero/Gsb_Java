@@ -300,10 +300,10 @@ public class Modele {
 	
 	/***
 	 * Fonction qui permet de mettre en remboursement une fiche
-	 * @param unf de type FicheFrais, montant de type float
+	 * @param unf de type FicheFrais, montant de type float, nbjustificatif de type int
 	 * @return true/false
 	 */
-	public static boolean miseEnRemboursement(FicheFrais unf,float montant){
+	public static boolean miseEnRemboursement(FicheFrais unf,float montant,int nbJustifictatif){
 		boolean rep = false; 		
 		Modele.connexion(); 		
 		try { 			
@@ -312,8 +312,14 @@ public class Modele {
 			st.setInt(2,unf.getMois());
 			st.executeUpdate();
 			st.close();
-			st = connexion.prepareStatement("UPDATE fichefrais SET montantValide=? WHERE idVisiteur=? AND mois=? AND idEtat='VA';");
+			st = connexion.prepareStatement("UPDATE fichefrais SET montantValide=? WHERE idVisiteur=? AND mois=? AND idEtat='RB';");
 			st.setFloat(1,montant);
+			st.setString(2,unf.getIdVisiteur());
+			st.setInt(3,unf.getMois());
+			st.executeUpdate();
+			st.close();
+			st = connexion.prepareStatement("UPDATE fichefrais SET nbJustificatifs=? WHERE idVisiteur=? AND mois=? AND idEtat='RB';");
+			st.setInt(1,nbJustifictatif);
 			st.setString(2,unf.getIdVisiteur());
 			st.setInt(3,unf.getMois());
 			st.executeUpdate();

@@ -20,7 +20,7 @@ public class ActionVoirValider implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		this.fenetre.getContentPane().removeAll();
-		this.fenetre.getContentPane().add(new V_FicheValiderConsulter(this.fenetre,this.index));
+		this.fenetre.getContentPane().add(new V_FicheValiderConsulter(this.fenetre,this.index,0));
 		this.fenetre.setJMenuBar(new V_Menu(this.fenetre));
 		this.fenetre.revalidate();
 	}
