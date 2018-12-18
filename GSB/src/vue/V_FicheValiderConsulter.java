@@ -9,7 +9,7 @@ import javax.swing.*;
 import class_bdd.FicheFrais;
 import class_bdd.LigneFraisForfait;
 import modele.Modele;
-import c_ActionListener.ActionValider;
+import c_ActionListener.ActionMiseEnRemboursement;
 
 public class V_FicheValiderConsulter extends JPanel{
 	/**
@@ -42,7 +42,7 @@ public class V_FicheValiderConsulter extends JPanel{
 		
 		this.setBackground(new Color(243,169,47));
 		this.btnR = new JButton("Mise en remboursement");
-		this.btnR.addActionListener(new ActionValider(fenetre,index));
+		this.btnR.addActionListener(new ActionMiseEnRemboursement(fenetre,index,montantT));
 		this.add(this.btnR);
 	}
 

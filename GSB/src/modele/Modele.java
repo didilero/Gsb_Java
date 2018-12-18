@@ -179,6 +179,11 @@ public class Modele {
 		return lesFH;
 	}
 	
+	/***
+	 * fonction qui retourne les info grace a un index
+	 * @param index
+	 * @return ArrayList<LigneFraisForfait>
+	 */
 	public static ArrayList<LigneFraisForfait> getLesInfos(int index){
 		ArrayList<LigneFraisForfait> lesLF = new ArrayList<LigneFraisForfait>();
 		ArrayList<FicheFrais> lesF = Modele.getFicheFrais();
@@ -199,6 +204,12 @@ public class Modele {
 		Modele.deconnexion();
 		return lesLF;
 	}
+	
+	/***
+	 * fonction qui retourne les info grace a une fiche de frais
+	 * @param index
+	 * @return ArrayList<LigneFraisForfait>
+	 */
 	public static ArrayList<LigneFraisForfait> getLesInfos(FicheFrais unf){
 		ArrayList<LigneFraisForfait> lesLF = new ArrayList<LigneFraisForfait>();
 		Modele.connexion();
@@ -264,7 +275,11 @@ public class Modele {
 		return rep;
 	}
 	
-	
+	/***
+	 * Fonction qui permet de valider une fiche
+	 * @param unf
+	 * @return true/false
+	 */
 	public static boolean valider(FicheFrais unf){
 		boolean rep = false; 		
 		Modele.connexion(); 		
@@ -283,6 +298,33 @@ public class Modele {
 		return rep;
 	}
 	
-	
+	/***
+	 * Fonction qui permet de mettre en remboursement une fiche
+	 * @param unf de type FicheFrais, montant de type float
+	 * @return true/false
+	 */
+	public static boolean miseEnRemboursement(FicheFrais unf,float montant){
+		boolean rep = false; 		
+		Modele.connexion(); 		
+		try { 			
+			st = connexion.prepareStatement("UPDATE fichefrais SET idEtat='RB' WHERE idVisiteur=? AND mois=? AND idEtat='VA';");
+			st.setString(1,unf.getIdVisiteur());
+			st.setInt(2,unf.getMois());
+			st.executeUpdate();
+			st.close();
+			st = connexion.prepareStatement("UPDATE fichefrais SET montantValide=? WHERE idVisiteur=? AND mois=? AND idEtat='VA';");
+			st.setFloat(1,montant);
+			st.setString(2,unf.getIdVisiteur());
+			st.setInt(3,unf.getMois());
+			st.executeUpdate();
+			st.close();
+			rep = true;
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		Modele.deconnexion();
+		return rep;
+	}
 	
 }

@@ -50,4 +50,8 @@ public class ModeleTest {
 		assertNotNull("La liste est vide",Modele.getHorsForfait());
 	}
 	
+	/*@Test
+	public void testMettreAMiseRemboursement(){
+		assertEquals("La mise en remboursement a echouer",true,);
+	}*/
 }
