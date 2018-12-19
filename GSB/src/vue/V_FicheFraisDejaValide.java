@@ -47,14 +47,13 @@ public class V_FicheFraisDejaValide extends JPanel implements FocusListener{
 		this.btnVoir.addActionListener(new ActionVoirValider(vue,this.index));
 		this.add(this.btnVoir);
 	}
-	@Override
+	
+	//Méthode pour indiquer l'index du tableau selectionner
 	public void focusGained(FocusEvent arg0) {
-		// TODO Auto-generated method stub
 		this.index = this.tableau.getSelectedRow();
 	}
-	@Override
+	//Pas réecrite cra elle ne nous ai pas pratique
 	public void focusLost(FocusEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 } 

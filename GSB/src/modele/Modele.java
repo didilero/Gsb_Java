@@ -153,31 +153,6 @@ public class Modele {
 		Modele.deconnexion();
 		return nb;
 	}
-	/***
-	 * Fonction qui retourne toute les fiches horsforfait.
-	 * @return ArrayList de type LigneFraisHorsForfait
-	 */
-	public static ArrayList<LigneFraisHorsForfait> getHorsForfait(){
-		ArrayList<FicheFrais> lesF = Modele.getFicheFrais();
-		ArrayList<LigneFraisHorsForfait> lesFH = new ArrayList<LigneFraisHorsForfait>();
-		Modele.connexion();
-		try {
-			for(int i =0; i<lesF.size();i++){
-				st = connexion.prepareStatement("SELECT * FROM lignefraishorsforfait WHERE lignefraishorsforfait.date=?;");
-				st.setDate(1,lesF.get(i).getDateModif());
-				rs = st.executeQuery();
-				while(rs.next()){
-					lesFH.add(new LigneFraisHorsForfait(rs.getInt(1),rs.getString(2),rs.getString(1),rs.getString(1),rs.getDate(1),rs.getFloat(1)));
-				}
-				rs.close();
-				st.close();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		Modele.deconnexion();
-		return lesFH;
-	}
 	
 	/***
 	 * fonction qui retourne les info grace a un index
@@ -332,5 +307,35 @@ public class Modele {
 		Modele.deconnexion();
 		return rep;
 	}
+	
+	/***
+	 * Fonction qui retourne toute les fiches horsforfait.
+	 * @return ArrayList de type LigneFraisHorsForfait
+	 */
+	public static ArrayList<LigneFraisHorsForfait> getHorsForfait(){
+		ArrayList<LigneFraisHorsForfait> lesFH = new ArrayList<LigneFraisHorsForfait>();
+		Modele.connexion();
+		try {
+			//for(int i =0; i<lesF.size();i++){
+				st = connexion.prepareStatement("SELECT * FROM lignefraishorsforfait WHERE lignefraishorsforfait.mois=201809 AND lignefraishorsforfait.idVisiteur='a131'");
+				//st.setInt(1,lesF.get(i).getMois());
+				//st.setString(2,lesF.get(i).getIdVisiteur());
+				
+				rs = st.executeQuery();
+				while(rs.next()){
+					lesFH.add(new LigneFraisHorsForfait(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDate(5),rs.getFloat(6)));
+				}
+				rs.close();
+				st.close();
+			//}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		Modele.deconnexion();
+		return lesFH;
+		
+		
+	}
+
 	
 }
