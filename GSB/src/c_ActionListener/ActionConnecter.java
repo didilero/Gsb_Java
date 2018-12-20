@@ -21,6 +21,7 @@ public class ActionConnecter implements ActionListener{
 
 	@SuppressWarnings("static-access")
 	public void actionPerformed(ActionEvent arg0) {
+		//SI la methode renvoie true, on affiche le panel suivant
 		if(Modele.connexionUtilisateur(this.id.getText(), this.mdp.getText())){
 			this.fenetre.getContentPane().removeAll();
 			this.fenetre.getContentPane().add(new V_Accueil(this.fenetre));

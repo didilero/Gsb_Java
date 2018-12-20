@@ -1,12 +1,8 @@
 package vue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.*;
-
 import c_ActionListener.*;
 
-public class V_Menu extends JMenuBar implements ActionListener{
+public class V_Menu extends JMenuBar{
 	/**
 	 * 
 	 */
@@ -25,6 +21,7 @@ public class V_Menu extends JMenuBar implements ActionListener{
 		this.btnQuitter.addActionListener(new ActionDeconnecter(vue));
 		this.menuQuitter.add(this.btnQuitter);
 		
+		//FMenu fiche de frais
 		this.menuFicheFrais = new JMenu("Fiches de frais");
 		this.btnVoirFiche = new JMenuItem("Fiches de frais à validées");
 		this.btnVoirFiche.addActionListener(new ActionConsulterFicheFrais(vue));
@@ -35,11 +32,6 @@ public class V_Menu extends JMenuBar implements ActionListener{
 		
 		this.add(menuQuitter);
 		this.add(menuFicheFrais);
-		
-	}
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 }

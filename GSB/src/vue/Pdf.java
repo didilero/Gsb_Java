@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import class_bdd.FicheFrais;
 import class_bdd.LigneFraisForfait;
 
-import com.itextpdf.awt.geom.Point;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -21,6 +20,7 @@ public class Pdf {
 	private static FicheFrais fiche;
 	private static ArrayList<LigneFraisForfait> lignefrais;
 	
+	@SuppressWarnings("static-access")
 	public Pdf(FicheFrais fiche, ArrayList<LigneFraisForfait> lignefrais){
 		
 		//On recupere les infos pour les fficher dans le pdf

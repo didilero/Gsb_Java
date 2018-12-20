@@ -19,7 +19,6 @@ public class V_Validation extends JPanel {
 	private ArrayList<LigneFraisForfait> lesF;
 	private JButton btnV;
 	
-	@SuppressWarnings("static-access")
 	public V_Validation(JFrame vue, int index){
 		//this.setLayout(new GridLayout(5,2));
 		this.lesF = Modele.getLesInfos(index);
